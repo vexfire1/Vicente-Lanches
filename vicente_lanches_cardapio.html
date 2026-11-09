@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171614">
+  <title>Vicente Lanches | Cardápio</title>
+  <meta name="description" content="Confira o cardápio do Vicente Lanches e faça seu pedido pelo WhatsApp.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-small">VICENTE LANCHES</div>
+    <div class="top-note">Sabor em cada detalhe</div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Vicente Lanches</div>
+      <h1>Seu próximo sabor favorito.</h1>
+      <p>Escolha seu pedido, conheça nosso cardápio e aproveite. Preparamos cada opção para deixar sua fome muito bem resolvida.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#cardapio">Ver cardápio <span aria-hidden="true">↓</span></a>
+        <a class="btn btn-outline" href="#contato">Fale com a gente</a>
+      </div>
+    </div>
+  </section>
+
+  <main id="cardapio">
+    <section class="intro">
+      <div class="section-kicker">Feito para você</div>
+      <h2>Nosso cardápio</h2>
+      <p>Dos clássicos que todo mundo ama às opções para variar o sabor. Escolha uma categoria e encontre seu favorito.</p>
+    </section>
+
+    <nav class="tabs" aria-label="Categorias do cardápio">
+      <button class="tab" data-category="lanches">Lanches</button>
+      <button class="tab" data-category="macarrao">Macarrão</button>
+      <button class="tab" data-category="panquecas">Panquecas</button>
+      <button class="tab" data-category="lasanhas">Lasanhas</button>
+      <button class="tab" data-category="bebidas">Bebidas</button>
+      <button class="tab" data-category="adicionais">Adicionais</button>
+      <button class="tab" data-category="sobremesas">Sobremesas</button>
+    </nav>
+
+    <section>
+      <div class="category-heading">
+        <h3 id="category-title">Lanches</h3>
+        <span id="item-count">3 opções</span>
+      </div>
+      <div class="grid" id="product-grid"></div>
+    </section>
+    <p class="sample-note">Observações: Algumas das imagens são ilustrativas.</p>
+  </main>
+
+  <footer class="footer" id="contato">
+    <div class="footer-inner">
+      <div>
+        <h3>Vicente Lanches</h3>
+        <p>Um bom lanche transforma qualquer momento. Será um prazer atender você!</p>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <div class="socials">
+          <a id="footer-whatsapp" href="#" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp — adicionar número</a>
+          <a id="footer-instagram" href="#" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram — acompanhar novidades</a>
+        </div>
+      </div>
+      <div>
+        <h4>Horário de atendimento</h4>
+        <p>Consulte nossos horários pelo WhatsApp.</p>
+      </div>
+    </div>
+    <div class="copyright">© <span id="year"></span> Vicente Lanches. Todos os direitos reservados.</div>
+  </footer>
+
+  <a class="btn btn-gold floating" id="floating-whatsapp" href="#contato">Pedir pelo WhatsApp</a>
+
+  <script>
+
+    const WHATSAPP_NUMBER = "5532998143374";
+    const INSTAGRAM_URL = "https://www.instagram.com/vicente_lanche/";
+
+    const products = {
+      "lanches": [
+            {
+                  "name": "Hambúrguer",
+                  "price": "R$ 10,00",
+                  "description": "Alface, tomate, bife, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "Vegetal",
+                  "price": "R$ 11,00",
+                  "description": "Alface, tomate, ovo, queijo, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "Egg Burguer",
+                  "price": "R$ 13,00",
+                  "description": "Alface, tomate, bife, ovo, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "X-Burguer",
+                  "price": "R$ 13,00",
+                  "description": "Alface, tomate, bife, queijo, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "X-Egg Burguer",
+                  "price": "R$ 15,00",
+                  "description": "Alface, tomate, bife, ovo, queijo, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "X-Presunto",
+                  "price": "R$ 15,00",
+                  "description": "Alface, tomate, bife, queijo, presunto, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "Americano",
+                  "price": "R$ 16,00",
+                  "description": "Alface, tomate, bife, ovo, queijo, presunto, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "Egg Calabresa",
+                  "price": "R$ 15,00",
+                  "description": "Alface, tomate, bife, ovo, calabresa, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "X-Calabresa",
+                  "price": "R$ 15,00",
+                  "description": "Alface, tomate, bife, queijo, calabresa, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "X-Egg Calabresa",
+                  "price": "R$ 16,00",
+                  "description": "Alface, tomate, bife, ovo, queijo, calabresa, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "Calabresa Burguer",
+                  "price": "R$ 14,00",
+                  "description": "Alface, tomate, bife, calabresa, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "X-Tudo Calabresa",
+                  "price": "R$ 17,00",
+                  "description": "Alface, tomate, bife, ovo, queijo, presunto, calabresa, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "Egg Bacon",
+                  "price": "R$ 15,00",
+                  "description": "Alface, tomate, bife, ovo, bacon, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "X-Bacon",
+                  "price": "R$ 15,00",
+                  "description": "Alface, tomate, bife, queijo, bacon, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "X-Egg Bacon",
+                  "price": "R$ 16,00",
+                  "description": "Alface, tomate, bife, ovo, queijo, bacon, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "Bacon Burguer",
+                  "price": "R$ 14,00",
+                  "description": "Alface, tomate, bife, bacon, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "X-Tudo",
+                  "price": "R$ 17,00",
+                  "description": "Alface, tomate, bife, ovo, queijo, presunto, bacon, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "X-Filé",
+                  "price": "R$ 17,00",
+                  "description": "Alface, tomate, filé de frango, queijo, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "X-Egg Filé",
+                  "price": "R$ 18,00",
+                  "description": "Alface, tomate, ovo, filé de frango, queijo, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "X-Tudo Filé",
+                  "price": "R$ 20,00",
+                  "description": "Alface, tomate, filé de frango, ovo, queijo, presunto, bacon, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "Lombo",
+                  "price": "R$ 15,00",
+                  "description": "Alface, tomate, lombo, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "X-Lombo",
+                  "price": "R$ 16,00",
+                  "description": "Alface, tomate, queijo, lombo, batata, e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "X-Bacon Lombo",
+                  "price": "R$ 17,00",
+                  "description": "Alface, tomate, queijo, lombo, bacon, batata, e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "Mascote",
+                  "price": "R$ 18,00",
+                  "description": "Alface, tomate,ovo, presunto, queijo, lombo, batata, e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "X-Frango",
+                  "price": "R$ 17,00",
+                  "description": "Alface tomate, frango desfiado, queijo, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "Laçador",
+                  "price": "R$ 18,00",
+                  "description": "Alface tomate, frango desfiado, ovo, presunto, queijo, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "X-Tudo Frango",
+                  "price": "R$ 20,00",
+                  "description": "Alface tomate, frango desfiado, ovo, presunto, queijo, bacon, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "Especial da Casa",
+                  "price": "R$ 20,00",
+                  "description": "Alface, tomate, lombo, ovo, presunto, queijo, bacon, batata e milho.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "Misto Tradicional",
+                  "price": "R$ 9,00",
+                  "description": "Presunto e queijo.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "Misto com Bacon",
+                  "price": "R$ 12,00",
+                  "description": "Presunto, queijo e bacon.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "Misto com Frango",
+                  "price": "R$ 12,00",
+                  "description": "Presunto, queijo e frango.",
+                  "image": "img/lanche.jpg"
+            },
+            {
+                  "name": "Misto com Calabresa",
+                  "price": "R$ 12,00",
+                  "description": "Presunto, queijo e calabresa.",
+                  "image": "img/lanche.jpg"
+            },
+      ],
+      "macarrao": [
+            {
+                  "name": "Macarrão Catupiry",
+                  "price": "R$ 18,00",
+                  "description": "Carne moída ou frango desfiado, mussarela e catupiry.",
+                  "image": "img/macarrao.jpg"
+            },
+            {
+                  "name": "Macarrão Bacon",
+                  "price": "R$ 18,00",
+                  "description": "Carne moída ou frango desfiado, mussarela e bacon.",
+                  "image": "img/macarrao.jpg"
+            },
+            {
+                  "name": "Macarrão Calabresa",
+                  "price": "R$ 18,00",
+                  "description": "Carne moída ou frango desfiado, mussarela e calabresa.",
+                  "image": "img/macarrao.jpg"
+            },
+            {
+                  "name": "Macarrão da Casa",
+                  "price": "R$ 21,00",
+                  "description": "Carne moída ou frango desfiado, mussarela, lombo, bacon, presunto e catupiry.",
+                  "image": "img/macarrao.jpg"
+            },
+            {
+                  "name": "Mega Macarrão",
+                  "price": "R$ 23,00",
+                  "description": "Carne moída ou frango desfiado, mussarela, lombo, bacon, presunto, calabresa, cheddar e catupiry.",
+                  "image": "img/macarrao.jpg"
+            }
+      ],
+      "panquecas": [
+            {
+                  "name": "Panqueca Catupiry",
+                  "price": "R$ 18,00",
+                  "description": "Carne moída ou frango desfiado, mussarela e catupiry.",
+                  "image": "img/panqueca.jpg"
+            },
+            {
+                  "name": "Panqueca Bacon",
+                  "price": "R$ 18,00",
+                  "description": "Carne moída ou frango desfiado, mussarela e bacon.",
+                  "image": "img/panqueca.jpg"
+            },
+            {
+                  "name": "Panqueca Calabresa",
+                  "price": "R$ 18,00",
+                  "description": "Carne moída ou frango desfiado, mussarela e calabresa.",
+                  "image": "img/panqueca.jpg"
+            },
+            {
+                  "name": "Panqueca da Casa",
+                  "price": "R$ 21,00",
+                  "description": "Carne moída ou frango desfiado, mussarela, lombo, bacon, presunto e catupiry.",
+                  "image": "img/panqueca.jpg"
+            },
+            {
+                  "name": "Mega Panqueca",
+                  "price": "R$ 23,00",
+                  "description": "Carne moída ou frango desfiado, mussarela, lombo, bacon, presunto, calabresa, cheddar e catupiry.",
+                  "image": "img/panqueca.jpg"
+            }
+      ],
+      "lasanhas": [
+            {
+                  "name": "Lasanha de Carne",
+                  "price": "R$ 25,00",
+                  "description": "Massa caseira, molho vermelho, molho branco, carne moída, presunto e mussarela.",
+                  "image": "img/carne.jpg"
+            },
+            {
+                  "name": "Lasanha de Frango",
+                  "price": "R$ 25,00",
+                  "description": "Massa caseira, molho branco, frango e mussarela.",
+                  "image": "img/frango.jpg"
+            }
+      ],
+      "bebidas": [
+            {
+                  "name": "Coca-Cola 2L",
+                  "price": "R$ 16,00",
+                  "description": "Coca-Cola 2L, conforme a apresentação indicada no cardápio.",
+                  "image": "img/coca_2l.jpg"
+            },
+            {
+                  "name": "IT Guaraná 2L",
+                  "price": "R$ 10,00",
+                  "description": "IT Guaraná 2L, conforme a apresentação indicada no cardápio.",
+                  "image": "img/it_guarana.jpg"
+            },
+            {
+                  "name": "IT Cola 2L",
+                  "price": "R$ 10,00",
+                  "description": "IT Cola 2L, conforme a apresentação indicada no cardápio.",
+                  "image": "img/it_cola.jpg"
+            },
+            {
+                  "name": "Sukita Laranja 2L",
+                  "price": "R$ 12,00",
+                  "description": "Sukita Laranja 2L, conforme a apresentação indicada no cardápio.",
+                  "image": "img/sukita.jpg"
+            },
+            {
+                  "name": "Guaraná Antártica 1,5L",
+                  "price": "R$ 12,00",
+                  "description": "Guaraná Antártica 1,5L, conforme a apresentação indicada no cardápio.",
+                  "image": "img/guarana_1.5l.jpg"
+            },
+            {
+                  "name": "Guaraná Antártica 1L",
+                  "price": "R$ 10,00",
+                  "description": "Guaraná Antártica 1L, conforme a apresentação indicada no cardápio.",
+                  "image": "img/guarana_1l.jpg"
+            },
+            {
+                  "name": "Coca-Cola 600ML",
+                  "price": "R$ 10,00",
+                  "description": "Coca-Cola 600ML, conforme a apresentação indicada no cardápio.",
+                  "image": "img/coca_600ml.jpg"
+            },
+            {
+                  "name": "H2OH",
+                  "price": "R$ 8,00",
+                  "description": "H2OH, conforme a apresentação indicada no cardápio.",
+                  "image": "img/h2oh.jpg"
+            },
+            {
+                  "name": "Água com gás",
+                  "price": "R$ 3,00",
+                  "description": "Água com gás, conforme a apresentação indicada no cardápio.",
+                  "image": "img/agua.jpg"
+            },
+            {
+                  "name": "Coca-Cola Lata (350ML)",
+                  "price": "R$ 6,00",
+                  "description": "Coca-Cola Lata (350ML), conforme a apresentação indicada no cardápio.",
+                  "image": "img/coca_lata.jpg"
+            },
+            {
+                  "name": "Coca-Cola Zero Lata (350ML)",
+                  "price": "R$ 6,00",
+                  "description": "Coca-Cola Zero Lata (350ML), conforme a apresentação indicada no cardápio.",
+                  "image": "img/coca_zero.jpg"
+            },
+            {
+                  "name": "Guaraná Antártica Lata (350ML)",
+                  "price": "R$ 6,00",
+                  "description": "Guaraná Antártica Lata (350ML), conforme a apresentação indicada no cardápio.",
+                  "image": "img/guarana_lata.jpg"
+            },
+            {
+                  "name": "Coca-Cola Mini (200ML)",
+                  "price": "R$ 3,50",
+                  "description": "Coca-Cola Mini (200ML), conforme a apresentação indicada no cardápio.",
+                  "image": "img/coca_mini.jpg"
+            },
+            {
+                  "name": "Guaraná Mini (200ML)",
+                  "price": "R$ 3,50",
+                  "description": "Guaraná Mini (200ML), conforme a apresentação indicada no cardápio.",
+                  "image": "img/guarana_mini.jpg"
+            },
+            {
+                  "name": "Copo Guaravita",
+                  "price": "R$ 3,00",
+                  "description": "Copo Guaravita, conforme a apresentação indicada no cardápio.",
+                  "image": "img/guaravita.jpg"
+            },
+            {
+                  "name": "Del Valle Laranja 450ML",
+                  "price": "R$ 5,00",
+                  "description": "Del Valle Laranja 450ML, conforme a apresentação indicada no cardápio.",
+                  "image": "img/laranja.jpg"
+            },
+            {
+                  "name": "Del Valle Uva 450ML",
+                  "price": "R$ 5,00",
+                  "description": "Del Valle Uva 450ML, conforme a apresentação indicada no cardápio.",
+                  "image": "img/uva.jpg"
+            },
+            {
+                  "name": "Tial Uva Caixinha (280ML)",
+                  "price": "R$ 3,50",
+                  "description": "",
+                  "image": "img/tial.jpg"
+            }
+
+      ],
+      "adicionais": [
+            {
+                  "name": "Bife",
+                  "price": "R$ 3,00",
+                  "description": "Adicionar mais um bife para complementar seu pedido.",
+                  "image": ""
+            },
+            {
+                  "name": "Ovo",
+                  "price": "R$ 3,00",
+                  "description": "Adicionar mais um ovo para complementar seu pedido.",
+                  "image": ""
+            },
+            {
+                  "name": "Catupiry",
+                  "price": "R$ 5,00",
+                  "description": "Porção extra de catupiry para complementar seu pedido.",
+                  "image": ""
+            },
+            {
+                  "name": "Cheddar",
+                  "price": "R$ 5,00",
+                  "description": "Porção extra de cheddar para complementar seu pedido.",
+                  "image": ""
+            },
+            {
+                  "name": "Presunto",
+                  "price": "R$ 5,00",
+                  "description": "Adicionar mais fatias presunto para complementar seu pedido.",
+                  "image": ""
+            },
+            {
+                  "name": "Mussarela",
+                  "price": "R$ 5,00",
+                  "description": "Adicionar mais fatias de mussarela para complementar seu pedido.",
+                  "image": ""
+            },
+            {
+                  "name": "Frango",
+                  "price": "R$ 7,00",
+                  "description": "Porção extra de frango para complementar seu pedido.",
+                  "image": ""
+            },
+            {
+                  "name": "Bacon",
+                  "price": "R$ 5,00",
+                  "description": "Porção extra de bacon para complementar seu pedido.",
+                  "image": ""
+            },
+            {
+                  "name": "Maionese ou Ketchup Extra",
+                  "price": "R$ 2,00",
+                  "description": "Maionese ou Ketchup Extra.",
+                  "image": ""
+            }
+      ],
+      "sobremesas": [
+            {
+                  "name": "Torta de Limão",
+                  "price": "R$ 12,00",
+                  "description": "Torta de Limão.",
+                  "image": "img/Torta.jpg"
+            },
+            {
+                  "name": "Mousse de Maracujá",
+                  "price": "R$ 12,00",
+                  "description": "Mousse de Maracujá.",
+                  "image": "img/Mousse.jpg"
+            },
+            {
+                  "name": "Brownie Brigadeiro",
+                  "price": "R$ 10,00",
+                  "description": "Brownie sabor brigadeiro.",
+                  "image": "img/brownie_brigadeiro.jpg"
+            },
+            {
+                  "name": "Brownie Cremy",
+                  "price": "R$ 10,00",
+                  "description": "Brownie sabor cremy.",
+                  "image": "img/brownie_cremy.jpg"
+            },
+            {
+                  "name": "Brownie Cremy Avelã",
+                  "price": "R$ 10,00",
+                  "description": "Brownie sabor cremy avelã.",
+                  "image": "img/brownie_cremyavela.jpg"
+            }
+      ]
+};
+    const labels = {
+      lanches: "Lanches", macarrao: "Macarrão", panquecas: "Panquecas",
+      lasanhas: "Lasanhas", bebidas: "Bebidas", adicionais: "Adicionais",
+      sobremesas: "Sobremesas"
+    };
+    const grid = document.getElementById("product-grid");
+
+    function orderLink(productName) {
+      if (!WHATSAPP_NUMBER) return "#contato";
+      const message = encodeURIComponent(`Olá! Gostaria de pedir ${productName} no Vicente Lanches.`);
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+    }
+
+    function render(category) {
+      document.getElementById("category-title").textContent = labels[category];
+      document.getElementById("item-count").textContent = `${products[category].length} opções`;
+      grid.innerHTML = products[category].map(product => `
+        <article class="product">
+          <img src="${product.image}" alt="${product.name}" loading="lazy">
+          <div class="product-body">
+            <div class="product-top">
+              <h4>${product.name}</h4>
+              <span class="price">${product.price}</span>
+            </div>
+            <p>${product.description}</p>
+            <a class="order" href="${orderLink(product.name)}" ${WHATSAPP_NUMBER ? 'target="_blank" rel="noopener"' : ''}>Pedir este item ↗</a>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    document.querySelectorAll(".tab").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));
+        button.classList.add("active");
+        render(button.dataset.category);
+      });
+    });
+
+    const waFooter = document.getElementById("footer-whatsapp");
+    const waFloating = document.getElementById("floating-whatsapp");
+    if (WHATSAPP_NUMBER) {
+      const waUrl = `https://wa.me/${WHATSAPP_NUMBER}`;
+      waFooter.href = waUrl;
+      waFooter.innerHTML = '<i class="fab fa-whatsapp"></i> WhatsApp — conversar agora';
+      waFloating.href = waUrl;
+      waFloating.target = "_blank";
+      waFloating.rel = "noopener";
+    }
+    if (INSTAGRAM_URL) {
+      document.getElementById("footer-instagram").href = INSTAGRAM_URL;
+      document.getElementById("footer-instagram").innerHTML = '<i class="fab fa-instagram"></i> Instagram — acompanhar novidades';
+    }
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.querySelector('.tab[data-category="lanches"]').classList.add("active");
+    render("lanches");
+  </script>
+</body>
+</html>
